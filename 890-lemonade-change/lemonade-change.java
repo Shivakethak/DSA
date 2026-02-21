@@ -12,7 +12,7 @@ class Solution {
                 else return false;
             }
             else{
-                twenty+=1;
+                // twenty+=1;
                 if(tens>0 && five>0 ){
                 tens-=1;
                 five-=1;
