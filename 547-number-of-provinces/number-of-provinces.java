@@ -2,11 +2,10 @@ class Solution {
     public int findCircleNum(int[][] isConnected) {
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         int n = isConnected.length;
-        int m = isConnected[0].length;
         for(int i =0;i<n;i++) adj.add(new ArrayList<Integer>());
         for(int i=0;i<n;i++){
-            for(int j =0;j<m;j++){
-                 if(i!=j && isConnected[i][j]!=0) {
+            for(int j =0;j<n;j++){
+                 if(i!=j && isConnected[i][j]==1) {
                     adj.get(i).add(j);
             }
         }
