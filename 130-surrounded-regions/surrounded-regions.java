@@ -4,18 +4,18 @@ class Solution {
         int n = board[0].length;
         boolean[][] vis = new boolean[m][n];
         for(int i=0;i<n;i++){
-            if(board[0][i]=='O'){
+            if(board[0][i]=='O' && !vis[0][i]){
                 dfs(0,i,vis,board);
             }
-            if(board[m-1][i]=='O'){
+            if(board[m-1][i]=='O'&& !vis[m-1][i]){
                 dfs(m-1,i,vis,board);
             }
         }
         for(int i=0;i<m;i++){
-             if(board[i][0]=='O'){
+             if(board[i][0]=='O'&& !vis[i][0]){
                 dfs(i,0,vis,board);
             }
-            if(board[i][n-1]=='O'){
+            if(board[i][n-1]=='O'&& !vis[i][n-1]){
                 dfs(i,n-1,vis,board);
             }
         }
