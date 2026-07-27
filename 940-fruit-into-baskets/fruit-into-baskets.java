@@ -7,7 +7,7 @@ class Solution {
         int len = 0;
         while(r<n){
             unique.put(fruits[r],unique.getOrDefault(fruits[r],0)+1);
-            while(unique.size()>2){
+            if(unique.size()>2){
                 unique.put(fruits[l],unique.get(fruits[l])-1);
                 if(unique.get(fruits[l])==0) unique.remove(fruits[l]);
                 l++;
