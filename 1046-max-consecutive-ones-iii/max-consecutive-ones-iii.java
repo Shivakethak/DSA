@@ -8,12 +8,12 @@ class Solution {
         while(r<n){
            if(nums[r]==0){
                 zeros++;
-                while(zeros>k){
+           }
+           if(zeros>k){
                     if(nums[l]==0) zeros--;
                     l++;
             }
-            }
-           max = Math.max(r-l+1,max);
+           if(zeros<=k)max = Math.max(r-l+1,max);
            r++;
         }
         return max;
