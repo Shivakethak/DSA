@@ -1,35 +1,35 @@
 class Solution {
     public int maxProfit(int k, int[] prices) {
         int n = prices.length;
-        int[][][] dp = new int[n+1][3][k+1];
+        int[][] after = new int[3][k+1];
         for(int i =0;i<3;i++){
             for(int j=0;j<k+1;j++){
-                dp[n][i][j]=0;
+                after[i][j]=0;
             }
         }
-        for(int i =0;i<n+1;i++){
-            for(int j=0;j<3;j++){
-                dp[i][j][k]=0;
-            }
+        for(int i =0;i<3;i++){
+                after[i][k]=0;
         }
         for(int i=n-1;i>=0;i--){
+            int[][] curr = new int[3][k+1];
             for(int j=0;j<=1;j++){
                 for(int K=1;K<=k;K++){
                     int profit;
                     if(j==1){
-                    int bought = -prices[i]+dp[i+1][0][K];
-                    int notbought = dp[i+1][1][K];
+                    int bought = -prices[i]+after[0][K];
+                    int notbought = after[1][K];
                     profit = Math.max(bought,notbought);
                     }else{
-                    int bought = prices[i]+dp[i+1][1][K-1];
-                    int notbought = dp[i+1][0][K];
+                    int bought = prices[i]+after[1][K-1];
+                    int notbought = after[0][K];
                     profit = Math.max(bought,notbought);
                     }
-                dp[i][j][K] = profit;
+                    curr [j][K] = profit;
                 }
             }
+            after = curr;
         }
-        return dp[0][1][k];
+        return after[1][k];
     }
     // private int maxProfit(int i,int buy,int k,int[] prices,        int[][][] dp ){
     //     if(i==prices.length) return 0;
