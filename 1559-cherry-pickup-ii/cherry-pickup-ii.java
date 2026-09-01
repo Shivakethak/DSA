@@ -3,6 +3,7 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
         int[][] prev = new int[n][n];
+        int[][] curr = new int[n][n];
         for(int i=0;i<n;i++){
             for(int j =0;j<n;j++){
             if(i==j) prev[i][j] =  grid[m-1][i];
@@ -10,7 +11,7 @@ class Solution {
         }
         }
         for(int i=m-2;i>=0;i--){
-            int[][] curr = new int[n][n];
+            // int[][] curr = new int[n][n];
             for(int j1= n-1;j1>=0;j1--){
                 for(int j2=n-1;j2>=0;j2--){
                     int max = Integer.MIN_VALUE;
@@ -28,7 +29,9 @@ class Solution {
                         curr[j1][j2] =  max;
                     }  
                 }
+                int[][] temp = prev;
                 prev = curr;
+                curr = temp;
             }
         return prev[0][n-1];
     }
