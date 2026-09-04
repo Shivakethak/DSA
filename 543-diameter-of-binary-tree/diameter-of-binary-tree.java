@@ -14,23 +14,24 @@
  * }
  */
 class Solution {
+    int max = 0;
     public int diameterOfBinaryTree(TreeNode root) {
-        return Diameter(root);
+        return diameter(root);
     }
-    public int Diameter(TreeNode root){
+    public int diameter(TreeNode root){
         if(root==null) return 0;
-        int left = Height(root.left);
-        int right = Height(root.right);
-        int dia = left + right ; 
-        int Left = Diameter(root.left);
-        int Right = Diameter(root.right);
-        return Math.max(Math.max(Left,Right),dia);
-       
+        int leftheight = height(root.left);
+        int rightheight = height(root.right);
+        max = Math.max(max,leftheight+rightheight);
+        diameter(root.left);
+        diameter(root.right);
+        return max;
+
     }
-    public int Height(TreeNode root){
-        if(root==null) return 0;
-        int left = Height(root.left);
-        int right = Height(root.right);
-        return Math.max(left,right)+1;
+    public int height(TreeNode node){
+        if(node==null) return 0;
+        int leftheight = height(node.left);
+        int rightheight = height(node.right);
+        return Math.max(leftheight,rightheight)+1;
     }
 }
