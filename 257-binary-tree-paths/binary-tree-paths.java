@@ -26,6 +26,7 @@ class Solution {
         path +=root.val;
         if(root.left==null && root.right==null) {
             paths.add(path);
+            return;
         }
         path+="->";
         paths(root.left,path);
