@@ -19,18 +19,22 @@ class Solution {
     }
     public int count(TreeNode root){
         if(root==null) return 0;
-        int leftHeight =height(root.left);
-        int rightHeight = height(root.right);
+        int leftHeight =lh(root.left);
+        int rightHeight = rh(root.right);
         if(leftHeight==rightHeight){ 
-            int leftNodes = (1<<leftHeight);
-            return leftNodes + count(root.right);
+            int leftNodes = (1<<(leftHeight+1))-1;
+            return leftNodes;
         }
-        int rightNodes = (1<<rightHeight);
-        return rightNodes + count(root.left);
+        return count(root.right) + count(root.left) +1;
     }
-    private int height(TreeNode root){
+    private int lh(TreeNode root){
         if(root==null) return 0;
-        int left = height(root.left);
+        int left = lh(root.left);
         return left+1;
+    } 
+    private int rh(TreeNode root){
+        if(root==null) return 0;
+        int right = rh(root.right);
+        return right+1;
     } 
 }
