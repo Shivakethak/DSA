@@ -1,48 +1,37 @@
 class Solution {
     public boolean checkValidString(String s) {
         int n = s.length();
-        int[] arr = new int[n];
         Stack<Integer> S = new Stack<>();
+        Stack<Integer> S1 = new Stack<>();
         for(int i=0 ; i<n ; i++){
             if(s.charAt(i)=='('){
                 S.push(i);
             }else if (s.charAt(i)==')'){
-                if(S.size()==0){
-                    int j = i-1;
-                    boolean present = false;
-                    while(j>=0){
-                       if(arr[j]==1){ 
-                        present = true;
-                        arr[j] = 0;
-                        break;
-                       }
-                       j--;
+                if(S.size()==0 && S1.size() == 0){
+                    return false;
+                }
+                if(S.size() ==0 && S1.size()!=0){
+                        S1.pop();
+                        continue;
                     }
-                    if(present==false) return false;
-                }else{
+                if(S.size()!=0){
                     S.pop();
                 }
             }else{
-                arr[i]=1;
+                S1.push(i);
             }
         }
         if(S.size()==0) return true;
-        int i = 0 ; 
-        while(!S.isEmpty()){
+        while(!S.isEmpty() && !S1.isEmpty()){
           int index  = S.peek();
-          int j = index+1;
-          boolean present   = false;
-          while(j<n){
-            if(arr[j]==1){ 
-                S.pop();
-                arr[j] = 0;
-                present = true;
-                break;
+          int index1 = S1.peek();
+          if(index1<index) return false;
+          else{ 
+            S.pop();
+            S1.pop();
           }
-          j++;
         }
-        if(present == false ) return false;
-    }
-    return true;
+        if(S.size()==0) return true;
+    return false;
 }
 }
