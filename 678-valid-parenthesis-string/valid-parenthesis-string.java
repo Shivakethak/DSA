@@ -7,22 +7,19 @@ class Solution {
             if (s.charAt(i) == '(') {
                 S.push(i);
             } else if (s.charAt(i) == ')') {
-                if (S.size() == 0 && S1.size() == 0) {
+                if (!S.isEmpty()) {
+                     S.pop();
+                }
+                else if (S1.isEmpty()) {
                     return false;
                 }
-                if (S.size() == 0 && S1.size() != 0) {
+                else{
                     S1.pop();
-                    continue;
                 }
-                if (S.size() != 0) {
-                    S.pop();
-                }
-            } else {
+            }  else {
                 S1.push(i);
             }
         }
-        if (S.size() == 0)
-            return true;
         while (!S.isEmpty() && !S1.isEmpty()) {
             int index = S.pop();
             int index1 = S1.pop();
