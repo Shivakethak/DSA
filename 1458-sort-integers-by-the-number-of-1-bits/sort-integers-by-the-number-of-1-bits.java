@@ -4,7 +4,7 @@ class Solution {
         int[][] pair = new int[n][2];
         for(int i = 0;i<n;i++){
             pair[i][0] = arr[i];
-            pair[i][1] = Count1s(arr[i]);
+            pair[i][1] = Integer.bitCount(arr[i]);
         }
         Arrays.sort(pair,(x,y)->{
         if(x[1]!=y[1]){
@@ -19,13 +19,13 @@ class Solution {
         }
         return arr;
     }
-    private int Count1s(int n){
-       int count = 0;
-       for(int i=0;i<32;i++){
-         if((n & (1<<i))!=0){
-            count++;
-         }
-       }
-       return count;
-    }
+    // private int Count1s(int n){
+    //    int count = 0;
+    //    for(int i=0;i<32;i++){
+    //      if((n & (1<<i))!=0){
+    //         count++;
+    //      }
+    //    }
+    //    return count;
+    // }
 }
