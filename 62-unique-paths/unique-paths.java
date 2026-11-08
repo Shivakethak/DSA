@@ -1,17 +1,20 @@
 class Solution {
     public int uniquePaths(int m, int n) {
-        // Total steps required
-        int N = m + n - 2;
-        // Number of down moves (we choose the smaller one to minimize iterations)
-        int k = Math.min(m - 1, n - 1); 
-        
-        long result = 1;
-        
-        // Calculate N Choose k: (N * (N-1) * ... * (N-k+1)) / (1 * 2 * ... * k)
-        for (int i = 1; i <= k; i++) {
-            result = result * (N - k + i) / i;
+       int[][] dp = new int[m][n];
+       for(int i=0;i<m;i++){
+        Arrays.fill(dp[i],-1);
+       }
+       return uniquePaths(0,0,m,n,dp);
+    }
+    private int uniquePaths(int i,int j,int m ,int n,int[][] dp){
+        if(i== m-1 &&  j == n-1){
+            return 1;
         }
-        
-        return (int) result;
+        if(i >=m || j>=n ) return 0;
+        if(dp[i][j]!=-1) return dp[i][j];
+        int bottom = uniquePaths(i+1,j,m,n,dp);
+        int right  = uniquePaths(i,j+1,m,n,dp);
+        dp[i][j] =  bottom + right;
+        return dp[i][j];
     }
 }
